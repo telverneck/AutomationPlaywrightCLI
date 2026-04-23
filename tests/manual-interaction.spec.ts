@@ -11,6 +11,12 @@ test.describe('Manual Interaction Test - Based on playwright-cli Demo', () => {
     await todoPage.reloadPage();
   });
 
+  test.afterEach(async () => {
+    // Cleanup after each test
+    await todoPage.clearLocalStorage();
+    await todoPage.getPage().close();
+  });
+
   test('Add two todos and complete the first one', async () => {
     // Step 1: Add first todo "Buy gmilk"
     await todoPage.addTodo('Buy gmilk');
